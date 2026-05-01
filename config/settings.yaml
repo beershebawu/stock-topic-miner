@@ -1,0 +1,24 @@
+scheduler:
+  # 采集任务时间表（crontab格式）
+  collect_crontab: "30 15 * * 1-5"  # 每个交易日15:30（收盘后）
+  news_crontab: "*/30 * * * *"       # 每30分钟采集新闻
+  report_crontab: "0 18 * * 1-5"    # 每个交易日18:00生成报告
+
+data_sources:
+  a_share:
+    enabled: true
+    source: "akshare"
+  hk_share:
+    enabled: true
+    source: "yfinance"
+  news:
+    enabled: true
+    rss_feeds:
+      - "http://feed.mix.sina.com.cn/api/roll/get?pageid=153&lid=2509&k=&num=50&page=1&callback="
+      - "http://feed.ifeng.com/rss/finance/stock.xml"
+  policy:
+    enabled: true
+    crawl_urls:
+      - "http://www.csrc.gov.cn"
+      - "http://www.sse.com.cn"
+      - "http://www.szse.cn"
